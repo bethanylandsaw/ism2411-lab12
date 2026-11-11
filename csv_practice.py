@@ -58,3 +58,18 @@ print(f"Dictionary total revenue: ${dict_total_revenue:.2f}")
 
 # csv.reader is useful when column positions stay consistent.
 # csv.DictReader is easier to read when using column names.
+
+# Exercise 7
+product_totals = {}
+with open("data/sales.csv", newline="") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+        total = price * quantity
+        product_totals[product] = product_totals.get(product, 0) + total
+
+for product in sorted(product_totals):
+        print(f"{product}: ${product_totals[product]:.2f}")
