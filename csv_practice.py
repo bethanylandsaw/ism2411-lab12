@@ -1,4 +1,13 @@
+# Python makes it easier to repeat an ETL process because the same code can
+# read, transform, and write data every time it runs. Excel is useful for
+# quickly viewing data and making manual changes, but Python automates larger or repeated tasks.
+#
+# A store could use an append-mode log to record each daily sales report that runs.
+# Append mode keeps the previous records instead of replacing them, which creates
+# a history that can be reviewed later.
+
 import csv
+from datetime import datetime
 
 total_revenue = 0
 
@@ -73,3 +82,8 @@ with open("data/sales.csv", newline="") as file:
 
 for product in sorted(product_totals):
         print(f"{product}: ${product_totals[product]:.2f}")
+
+# Exercise 8
+with open("data/run_log.txt", "a") as log_file:
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_file.write(f"{timestamp} - Total revenue: ${total_revenue:.2f}\n")
