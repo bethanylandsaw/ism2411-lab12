@@ -42,3 +42,19 @@ with open("data/sales.csv", newline="") as input_file, open(
 
 print(f"Original rows: {original_count}")
 print(f"Written rows: {written_count}")
+
+# Exercise 6
+dict_total_revenue = 0
+with open("data/sales.csv", newline="") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+            product = row["product"]
+            price = float(row["price"])
+            quantity = int(row["quantity"])
+            total = price * quantity
+            dict_total_revenue += total
+print(f"Dictionary total revenue: ${dict_total_revenue:.2f}")
+
+# csv.reader is useful when column positions stay consistent.
+# csv.DictReader is easier to read when using column names.
